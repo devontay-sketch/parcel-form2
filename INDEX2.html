@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Parcel Services</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, sans-serif; background: transparent; padding: 0; }
+    .card { background: white; border-radius: 16px; border: 1px solid #e2e8f0; width: 100%; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+    h1 { text-align: center; font-size: 22px; margin-bottom: 6px; color: #0f1923; padding-top: 24px; }
+    p.sub { text-align: center; font-size: 13px; color: #717182; margin-bottom: 0; }
+
+    .tabs input[type="radio"] { display: none; }
+    .tabs { width: 100%; }
+    .tab-labels { display: grid; grid-template-columns: 1fr 1fr 1fr; border-bottom: 1px solid #e2e8f0; background: #f8f9fa; }
+    .tab-labels label { padding: 16px; cursor: pointer; font-size: 14px; font-weight: 500; color: #717182; text-align: center; position: relative; }
+
+    #tab-send:checked ~ .tab-labels label[for="tab-send"],
+    #tab-track:checked ~ .tab-labels label[for="tab-track"],
+    #tab-return:checked ~ .tab-labels label[for="tab-return"] { background: white; color: #0f1923; }
+
+    #tab-send:checked ~ .tab-labels label[for="tab-send"]::after,
+    #tab-track:checked ~ .tab-labels label[for="tab-track"]::after,
+    #tab-return:checked ~ .tab-labels label[for="tab-return"]::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #0f1923; border-radius: 0 0 4px 4px;
+    }
+
+    .tab-content { display: none; padding: 24px; }
+    #tab-send:checked ~ .tab-contents #content-send,
+    #tab-track:checked ~ .tab-contents #content-track,
+    #tab-return:checked ~ .tab-contents #content-return { display: block; }
+
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; color: #0f1923; }
+    .field p { font-size: 12px; color: #717182; margin-bottom: 6px; }
+    .field input, .field select { width: 100%; height: 40px; padding: 0 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; font-family: Inter, sans-serif; }
+    .field input:focus, .field select:focus { border-color: #0f1923; box-shadow: 0 0 0 3px rgba(15,25,35,0.1); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Parcel Services</h1>
+    <p class="sub">Send, track or return your parcels</p>
+
+    <div class="tabs">
+      <input type="radio" name="tabs" id="tab-send" checked/>
+      <input type="radio" name="tabs" id="tab-track"/>
+      <input type="radio" name="tabs" id="tab-return"/>
+
+      <div class="tab-labels">
+        <label for="tab-send">Send</label>
+        <label for="tab-track">Track</label>
+        <label for="tab-return">Return</label>
+      </div>
+
+      <div class="tab-contents">
+        <div id="content-send" class="tab-content">
+          <div class="row">
+            <div class="field">
+              <label>From Country</label>
+              <select><option value="">Select country</option><option>United Kingdom</option><option>United States</option><option>Australia</option><option>Canada</option><option>France</option><option>Germany</option><option>Ireland</option><option>Italy</option><option>Netherlands</option><option>Spain</option></select>
+            </div>
+            <div class="field">
+              <label>From Postcode</label>
+              <input type="text" placeholder="e.g. SW1A 1AA"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>To Country</label>
+              <select><option value="">Select country</option><option>United Kingdom</option><option>United States</option><option>Australia</option><option>Canada</option><option>France</option><option>Germany</option><option>Ireland</option><option>Italy</option><option>Netherlands</option><option>Spain</option></select>
+            </div>
+            <div class="field">
+              <label>To Postcode</label>
+              <input type="text" placeholder="e.g. 10001"/>
+            </div>
+          </div>
+          <div class="field">
+            <label>Parcel Weight (kg)</label>
+            <input type="number" placeholder="0.00" min="0" step="0.01"/>
+          </div>
+        </div>
+
+        <div id="content-track" class="tab-content">
+          <div class="field">
+            <label>Parcel Number</label>
+            <p>Enter the 16-character parcel reference number</p>
+            <input type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" style="font-family:monospace;letter-spacing:4px;"/>
+          </div>
+        </div>
+
+        <div id="content-return" class="tab-content">
+          <div class="field">
+            <label>Retailer Name</label>
+            <p>Enter the name of the retailer you are returning to</p>
+            <input type="text" placeholder="e.g. ASOS, Amazon, Zara..."/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
